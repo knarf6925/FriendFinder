@@ -245,21 +245,25 @@
             $("#q10").val()
           ]
         };
-
+        // Grab the current URL of the website
+        var currentUrl = window.location.origin;
+        
         // AJAX post the data to the friends API.
-        $.post("/api/friends", userData, function(data) {
+        $.post(currentUrl + "/api/friends", userData, function(data) {
 
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
 
           // Show the modal with the best match
-          $("#results-modal").modal("toggle");
+          $("#resultsmodal").modal("toggle");
+        
 
         });
       } else {
         alert("Please fill out all fields before submitting!");
       }
+      return false;
     });
   </script>
 

@@ -21,7 +21,7 @@ module.exports = function (app) {
 
         var totalDiffrence = 0;
 
-        for (var i = o; i < friends.length; i++) {
+        for (var i = 0; i < friends.length; i++) {
 
             console.log(friends[i]);
             totalDiffrence = 0;
@@ -36,11 +36,7 @@ module.exports = function (app) {
                     bestMatch.photo = friends[i].photo;
                     bestMatch.friendDiffrence = totalDiffrence;
                 }
-
-
-                }
-            
-
+            }
         }
 
         friends.push(userData);
