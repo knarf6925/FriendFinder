@@ -1,47 +1,173 @@
-var friends = require("../data/friends.js");
 
-module.exports = function (app) {
-
+module.exports = function(app) {
     app.get("/api/friends", function(req, res) {
-        res.json(friends);
+      res.json(friends);
     });
-
     app.post("/api/friends", function(req, res) {
-        var bestMatch = {
-            name: "",
-            photo: "",
-            friendDiffrence: 1000
-        };
-        console.log(req.body);
-// results of the useres survey post and parse it
-        var userData = req.body;
-        var userScores = userData.userScores;
-
-        console.log(userScores);
-
-        var totalDiffrence = 0;
-
-        for (var i = 0; i < friends.length; i++) {
-
-            console.log(friends[i]);
-            totalDiffrence = 0;
-
-            for (var j = 0; j < friends[i].scores[j]; j++) {
-
-                totalDiffrence += math.abs(parseInt(userscores[j])) - parseInt(friends[i].scores[j]);
-
-                if (totalDiffrence <= bestMatch.friendDiffrence) {
-
-                    bestMatch.name = friends[i].name;
-                    bestMatch.photo = friends[i].photo;
-                    bestMatch.friendDiffrence = totalDiffrence;
-                }
-            }
+        var friends = [
+            {
+                name:"Ahmed",
+                photo:"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                scores:[
+                    "5",
+                    "1",
+                    "4",
+                    "4",
+                    "5",
+                    "1",
+                    "2",
+                    "5",
+                    "4",
+                    "1"
+                  ]
+              },
+            {
+                "name":"John",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "2",
+                    "4",
+                    "3",
+                    "3",
+                    "1",
+                    "3",
+                    "5",
+                    "2",
+                    "4",
+                    "1"
+                  ]
+              },
+            {
+                "name":"Sarah",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "5",
+                    "2",
+                    "2",
+                    "1",
+                    "5",
+                    "1",
+                    "3",
+                    "5",
+                    "4",
+                    "5"
+                  ]
+              },
+              {
+                "name":"Chris",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "1",
+                    "4",
+                    "3",
+                    "3",
+                    "5",
+                    "2",
+                    "2",
+                    "3",
+                    "3",
+                    "1"
+                  ]
+              },
+              {
+                "name":"Derick",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "3",
+                    "3",
+                    "3",
+                    "3",
+                    "3",
+                    "5",
+                    "1",
+                    "1",
+                    "4",
+                    "1"
+                  ]
+              },
+              {
+                "name":"OJ",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "2",
+                    "2",
+                    "1",
+                    "5",
+                    "5",
+                    "5",
+                    "1",
+                    "2",
+                    "4",
+                    "5"
+                  ]
+              },
+              {
+              "name":"Mike",
+                "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                "scores":[
+                    "1",
+                    "2",
+                    "1",
+                    "1",
+                    "5",
+                    "3",
+                    "1",
+                    "2",
+                    "5",
+                    "4"
+                  ]
+                },
+              
+              {
+                "name":"Bobby",
+                  "photo":"https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+                  "scores":[
+                      "1",
+                      "2",
+                      "1",
+                      "1",
+                      "5",
+                      "3",
+                      "1",
+                      "2",
+                      "5",
+                      "4"
+                    ]
+                  }
+                ];
+      var bestMatch = {
+        name: "",
+        photo: "",
+        friendDifference: 1000
+      };
+      console.log(req.body);
+      console.log(friends);
+      var userData = req.body;
+      var userScores = userData.scores;
+      var totalDifference = 0;
+     
+      friends.push(userData);
+  
+      for (var i = 0; i < friends.length; i++) {
+        console.log(friends[i].name);
+        totalDifference = 0;
+        for (var j = 0; j < friends[i].scores[j]; j++) {
+          totalDifference += Math.abs(parseInt(userScores[j]) - parseInt(friends[i].scores[j]));
+          if (totalDifference <= bestMatch.friendDifference) {
+            bestMatch.name = friends[i].name;
+            bestMatch.photo = friends[i].photo;
+            bestMatch.friendDifference = totalDifference;
+          }
+          console.log(totalDifference);
         }
-
-        friends.push(userData);
-
-        res.json(bestMatch);
+      }
+  
+      
+      res.json(bestMatch);
+  
     });
-
-}
+  
+  };
+  
+  
+  
